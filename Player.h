@@ -17,7 +17,7 @@ class Player
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
         Player(GameMechs* thisGMRef);
-        ~Player();
+        ~Player(); // destructor
 
         void getPlayerPos(objPos &returnPos); // Upgrade this in iteration 3.
         void updatePlayerDir();
@@ -29,6 +29,8 @@ class Player
 
         // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
+
+        int** myPlayer; // heap data member
 };
 
 #endif

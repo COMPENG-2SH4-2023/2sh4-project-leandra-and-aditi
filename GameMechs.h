@@ -25,12 +25,15 @@ class GameMechs
         int boardSizeX;
         int boardSizeY;
 
+        int** myGM; // heap data member
+
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
         
         bool getExitFlagStatus();
         void setExitTrue();
+        ~GameMechs(); // destructor
 
         char getInput();
         void setInput(char this_input);
