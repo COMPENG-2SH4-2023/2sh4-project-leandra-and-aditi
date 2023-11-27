@@ -1,8 +1,8 @@
 #ifndef GAMEMECHS_H
 #define GAMEMECHS_H
 
-#include <cstdlib>
-#include <time.h>
+#include <cstdlib> // provides srand() and rand()
+#include <time.h> // provides time
 
 #include "objPos.h"
 #include "objPosArrayList.h"
@@ -10,7 +10,7 @@
 using namespace std;
 
 
-class GameMechs
+class GameMechs 
 {
     // Construct the remaining declaration from the project manual.
 
@@ -21,13 +21,19 @@ class GameMechs
     private:
         char input;
         bool exitFlag;
+        bool LoseFlag; // added faeatures
         
         int boardSizeX;
         int boardSizeY;
 
+        int Score;
+
+        int** myGM; // heap data member
+
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
+        ~GameMechs(); // destructor
         
         bool getExitFlagStatus();
         void setExitTrue();
@@ -38,6 +44,15 @@ class GameMechs
 
         int getBoardSizeX();
         int getBoardSizeY();
+
+        // added features 
+
+        bool getLoseFlagStatus();
+        void setLoseTrue();
+
+        int getScore();
+        void incrementScore();
+
       
 
 };
