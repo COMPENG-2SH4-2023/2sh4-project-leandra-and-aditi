@@ -11,6 +11,12 @@ GameMechs::GameMechs()
     boardSizeX = 30; // default board size
     boardSizeY = 15; 
 
+
+}
+
+GameMechs::~GameMechs()
+{
+    delete [] myGM; // delete created heap data members
 }
 
 GameMechs::~GameMechs()

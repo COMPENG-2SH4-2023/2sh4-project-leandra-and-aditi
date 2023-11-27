@@ -37,6 +37,7 @@ class GameMechs
         
         bool getExitFlagStatus();
         void setExitTrue();
+        ~GameMechs(); // destructor
 
         char getInput();
         void setInput(char this_input);

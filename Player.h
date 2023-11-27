@@ -33,7 +33,6 @@ class Player
         GameMechs* mainGameMechsRef;
 
         int** myPlayer; // heap data member
-
 };
 
 #endif

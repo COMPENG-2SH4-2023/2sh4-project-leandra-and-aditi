@@ -45,6 +45,10 @@ void Initialize(void)
 {
     MacUILib_init();
     MacUILib_clearScreen();
+ // heap -- deallocate
+
+    myGM = new GameMechs(20,10); // make the board size 20x10
+    myPlayer = new Player(myGM);
 
     // heap -- deallocate
 
@@ -82,7 +86,6 @@ void RunLogic(void)
 void DrawScreen(void)
 {
     MacUILib_clearScreen();
-
     int i;
     int j;
 
@@ -132,7 +135,6 @@ void CleanUp(void)
     MacUILib_clearScreen();    
   
     MacUILib_uninit();
-
     // deallocating heap members
 
     delete myGM;
