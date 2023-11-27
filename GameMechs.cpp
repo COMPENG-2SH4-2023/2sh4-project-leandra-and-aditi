@@ -19,11 +19,6 @@ GameMechs::~GameMechs()
     delete [] myGM; // delete created heap data members
 }
 
-GameMechs::~GameMechs()
-{
-    delete [] myGM; // delete created heap data members
-}
-
 GameMechs::GameMechs(int boardX, int boardY)
 {
     input = 0;

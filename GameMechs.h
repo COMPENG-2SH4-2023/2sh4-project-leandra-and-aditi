@@ -33,7 +33,6 @@ class GameMechs
     public:
         GameMechs();
         GameMechs(int boardX, int boardY);
-        ~GameMechs(); // destructor
         
         bool getExitFlagStatus();
         void setExitTrue();
