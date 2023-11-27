@@ -15,9 +15,10 @@ Food::~Food()
     delete[] food;
 }
 
-void Food::generateFood(objPos blockOff)
+void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 {
     srand(time(NULL));
+    objPos blockOff;
 
     int x_candidate;
     int y_candidate;
@@ -51,6 +52,7 @@ void Food::getFoodPos(objPos &returnPos)
     returnPos.setObjPos(foodPos.x,foodPos.y,foodPos.symbol);
 }
 
+/*
 void Food::updateFood() // for debugging purposes 
 {
 
@@ -63,3 +65,4 @@ void Food::updateFood() // for debugging purposes
             break;
     }       
 }
+*/

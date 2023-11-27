@@ -20,13 +20,13 @@ class Player
         Player(GameMechs* thisGMRef);
         ~Player(); // destructor
 
-        void getPlayerPos(objPos &returnPos); // Upgrade this in iteration 3.
+        objPosArrayList* getPlayerPos(); // upgraded for snake body
         void updatePlayerDir();
         void movePlayer();
 
     private:
     
-        objPos playerPos;   // Upgrade this in iteration 3.       
+        objPosArrayList *playerPosList;   // Upgraded in iteration 3 for snake body      
         enum Dir myDir;
 
         // Need a reference to the Main Game Mechanisms

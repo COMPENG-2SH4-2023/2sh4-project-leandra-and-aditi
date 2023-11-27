@@ -17,7 +17,7 @@ class Food
         Food(GameMechs* thisGMRef);
         ~Food(); // destructor
 
-        void generateFood(objPos blockOff);
+        void generateFood(objPosArrayList* blockList); // upgraded in iteration 3
         void getFoodPos(objPos &returnPos);
         void updateFood();
 

@@ -1,11 +1,12 @@
 #include "GameMechs.h"
 #include "MacUILib.h" // added to access hasChar and getChar
 
-// Developer 1 - Aditi
+// Developer 1 - Aditi 
 
 GameMechs::GameMechs()
 {
     input = 0;
+    Score = 0;
     exitFlag = false;
     LoseFlag = false;
     boardSizeX = 30; // default board size
@@ -22,6 +23,7 @@ GameMechs::~GameMechs()
 GameMechs::GameMechs(int boardX, int boardY)
 {
     input = 0;
+    Score = 0;
     exitFlag = false;
     LoseFlag = false;
     boardSizeX = boardX; // default board size
