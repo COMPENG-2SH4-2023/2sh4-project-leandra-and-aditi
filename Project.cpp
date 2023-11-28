@@ -45,17 +45,16 @@ void Initialize(void)
 {
     MacUILib_init();
     MacUILib_clearScreen();
- // heap -- deallocate
 
+    // heap -- deallocate
+    
     myGM = new GameMechs(20,10); // make the board size 20x10
-    myPlayer = new Player(myGM);
     food = new Food(myGM); // initialze food
+    myPlayer = new Player(myGM,food);
 
     // food generation
 
     objPosArrayList* playerPosList = myPlayer->getPlayerPos(); // upgraded in iteration 3
-    //myPlayer->getPlayerPos(playPos); // no longer need since initialized above
-
     food->generateFood(playerPosList); 
                                  
 
@@ -70,10 +69,7 @@ void RunLogic(void)
 {
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
-
-    //food->updateFood(); -- only for debugging purposes in iteration 2B
-
-    myGM->clearInput(); // so the input isnt repetedly processed
+    myGM->clearInput(); // so the input isn't repetedly processed
 
     
 }
@@ -96,8 +92,10 @@ void DrawScreen(void)
             
             drawn = false;
 
-            for (int k = 0; k < playerBody->getSize(); k++){
+            for (int k = 0; k < playerBody->getSize(); k++)
+            {
                 playerBody->getElement(tempBody, k);
+                
                 if (tempBody.x == j && tempBody.y == i)
                 {
                     MacUILib_printf("%c", tempBody.symbol);
@@ -124,8 +122,6 @@ void DrawScreen(void)
 
         MacUILib_printf("%s","\n");
     }
-
-    //MacUILib_printf("Player Pos: <%d, %d>, + %c\n", tempPos.x, tempPos.y, tempPos.symbol);
 
     MacUILib_printf("Player positions:\n");
     for(int m = 0; m < playerBody->getSize(); m++)

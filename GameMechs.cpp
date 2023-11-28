@@ -89,5 +89,6 @@ int GameMechs::getScore()
 
 void GameMechs::incrementScore()
 {
-    Score++;
+        Score++;
+
 }

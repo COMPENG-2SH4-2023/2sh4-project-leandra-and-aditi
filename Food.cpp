@@ -18,12 +18,15 @@ Food::~Food()
 void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 {
     srand(time(NULL));
-    objPos blockOff;
+    
+    objPos blockOff; // used blockoff as name so dont have to rewite parts of code
 
     int x_candidate;
     int y_candidate;
 
-    while(true)
+    bool drawn = true;
+
+    while(drawn)
     {
         int x = mainGameMechsRef->getBoardSizeX();
         int y = mainGameMechsRef->getBoardSizeY();
@@ -34,15 +37,22 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 
     // validate
 
-        // if at least one of the coordinates does not match player pos -- generate 
+        // feature 2 - change to now go through each element in blockList -- add a for loop
 
-        if(x_candidate != blockOff.x || y_candidate != blockOff.y)
-        {
-            foodPos.x = x_candidate;
-            foodPos.y = y_candidate;
-            foodPos.symbol = 'o';
-            break; // after generating break out of while loop
-        }
+        for(int i = 0; i < blockList->getSize(); i++)
+        
+            blockList->getElement(blockOff, i);
+            if(x_candidate != blockOff.x || y_candidate != blockOff.y) // if at least one of the coordinates 
+                                                                       // does not match player pos -- generate 
+            {
+                foodPos.x = x_candidate;
+                foodPos.y = y_candidate;
+                foodPos.symbol = 'o';
+                drawn = false;
+                break; // after generating break out of while loop
+
+            }
+        
     }
 }
     
@@ -51,18 +61,3 @@ void Food::getFoodPos(objPos &returnPos)
 {
     returnPos.setObjPos(foodPos.x,foodPos.y,foodPos.symbol);
 }
-
-/*
-void Food::updateFood() // for debugging purposes 
-{
-
-    char input = mainGameMechsRef->getInput(); 
-
-    switch(input) // change input to coordinate with gamemech
-    {
-        case 'o':
-            generateFood(foodPos);
-            break;
-    }       
-}
-*/

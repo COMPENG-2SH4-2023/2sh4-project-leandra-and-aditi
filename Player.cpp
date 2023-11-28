@@ -1,27 +1,24 @@
 #include "Player.h"
 
 
-Player::Player(GameMechs* thisGMRef)
+Player::Player(GameMechs* thisGMRef, Food* food)
 {
     mainGameMechsRef = thisGMRef;
     myDir = STOP;
 
+    // feature 2 -- create reference to food
+    mainFoodRef = food;
+
     // more actions to be included
 
     objPos tempPos; // create temp and initialize 
-    tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() /2,mainGameMechsRef->getBoardSizeY() /2,'@'); // initializing
+    tempPos.setObjPos(mainGameMechsRef->getBoardSizeX() /2,mainGameMechsRef->getBoardSizeY() /2,'*'); // initializing
 
     // heap -- deallocate 
 
     playerPosList = new objPosArrayList();
     playerPosList->insertHead(tempPos); // insert as parameter
 
-    // for debugging
-
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
 }
 
 
@@ -87,12 +84,16 @@ void Player::movePlayer()
     objPos currHead; // holding position info of current head
     playerPosList->getHeadElement(currHead);
 
+    objPos currFood; // holding info of current food position
+    mainFoodRef->getFoodPos(currFood);
+
     // made changes to boundaries cause wraparound not working?
     
     if(myDir == UP){ // w = UP
         currHead.y--; 
         if(currHead.y <=  0){ // wraparound logic implementation 
-            currHead.y = mainGameMechsRef->getBoardSizeY() - 2; 
+            currHead.y = mainGameMechsRef->getBoardSizeY() - 2; // - 2 because index is size - 1,
+                                                                // and last element is # so - 2
         }
     } 
 
@@ -116,14 +117,26 @@ void Player::movePlayer()
             currHead.x = 1; 
         }
     } 
+    
+    // iteration 3 feature 2
+    
+    if(currFood.x == currHead.x && currFood.y == currHead.y) // checking for collision
+    {
+        playerPosList->insertHead(currHead);
+        mainFoodRef->generateFood(playerPosList);
+    }
 
-    // new current head should be inserted to the head of the list,
+    else
+    {
+        // new current head should be inserted to the head of the list,
 
-    playerPosList->insertHead(currHead);
+        playerPosList->insertHead(currHead);
 
-    // then remove tail
+        // then remove tail
 
-    playerPosList->removeTail();
+        playerPosList->removeTail();
+    }
+    
 
 }
 
