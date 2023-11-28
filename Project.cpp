@@ -56,7 +56,6 @@ void Initialize(void)
 
     objPosArrayList* playerPosList = myPlayer->getPlayerPos(); // upgraded in iteration 3
     food->generateFood(playerPosList); 
-                                 
 
 }
 
@@ -67,6 +66,10 @@ void GetInput(void)
 
 void RunLogic(void)
 {
+    objPosArrayList* playerPosList = myPlayer->getPlayerPos(); // to make within scope of increment score
+                                                               // is this the right way?
+    myGM->incrementScore(playerPosList);
+
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
     myGM->clearInput(); // so the input isn't repetedly processed

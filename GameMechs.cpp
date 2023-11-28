@@ -87,8 +87,9 @@ int GameMechs::getScore()
     return Score;
 }
 
-void GameMechs::incrementScore()
+void GameMechs::incrementScore(objPosArrayList* SizeList)
 {
-        Score++;
+    int listSize = SizeList->getSize();
+    Score = listSize - 1;
 
 }

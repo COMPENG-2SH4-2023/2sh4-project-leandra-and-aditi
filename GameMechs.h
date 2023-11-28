@@ -51,7 +51,7 @@ class GameMechs
         void setLoseTrue();
 
         int getScore();
-        void incrementScore();
+        void incrementScore(objPosArrayList* SizeList);
 
       
 
