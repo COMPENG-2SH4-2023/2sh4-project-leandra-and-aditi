@@ -18,8 +18,10 @@ class Food
         ~Food(); // destructor
 
         void generateFood(objPosArrayList* blockList); // upgraded in iteration 3
+                                                       // generates "food" and checks does not overlap with
+                                                       // player pos
+                                                       
         void getFoodPos(objPos &returnPos);
-        void updateFood();
 
 
     private:

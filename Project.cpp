@@ -8,7 +8,7 @@
 
 using namespace std;
 
-#define DELAY_CONST 100000
+#define DELAY_CONST 150000
 
 GameMechs* myGM;
 Player* myPlayer;
@@ -47,7 +47,7 @@ void Initialize(void)
     MacUILib_clearScreen();
 
     // heap -- deallocate
-    
+
     myGM = new GameMechs(20,10); // make the board size 20x10
     food = new Food(myGM); // initialze food
     myPlayer = new Player(myGM,food);
@@ -66,12 +66,16 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    objPosArrayList* playerPosList = myPlayer->getPlayerPos(); // to make within scope of increment score
-                                                               // is this the right way?
-    myGM->incrementScore(playerPosList);
-
     myPlayer->updatePlayerDir();
     myPlayer->movePlayer();
+
+    objPosArrayList* playerPosList = myPlayer->getPlayerPos(); // to make within scope of increment score
+                                                               // is this the right way?
+
+    myGM->incrementScore(playerPosList); // would not work unless put in run logic which makes sense
+
+    myPlayer->CheckSelfCollision();
+
     myGM->clearInput(); // so the input isn't repetedly processed
 
     
@@ -87,11 +91,13 @@ void DrawScreen(void)
     objPos tempBody;
 
     objPos tempFood;
-    food->getFoodPos(tempFood); // get the food pos
+    food->getFoodPos(tempFood); // reference to the food pos
 
-    for(int i = 0; i < myGM->getBoardSizeY(); i++){ // rows
+    for(int i = 0; i < myGM->getBoardSizeY(); i++) // rows
+    {
     
-        for(int j = 0; j < myGM->getBoardSizeX(); j++){ // columns
+        for(int j = 0; j < myGM->getBoardSizeX(); j++) // columns
+        { 
             
             drawn = false;
 
@@ -110,15 +116,18 @@ void DrawScreen(void)
             if (drawn) continue;
             // if player was drawn, don't draw anything below.
 
-            if(j == 0 || j == myGM->getBoardSizeX()-1 || i == 0 || i == myGM->getBoardSizeY()-1){
+            if(j == 0 || j == myGM->getBoardSizeX()-1 || i == 0 || i == myGM->getBoardSizeY()-1)
+            {
                 MacUILib_printf("%s","#");
             }
 
-            else if(i == tempFood.y && j == tempFood.x){
+            else if(i == tempFood.y && j == tempFood.x)
+            {
                 MacUILib_printf("%c", tempFood.symbol);
             }
 
-            else{
+            else
+            {
                 MacUILib_printf("%s"," ");
             }
         }
@@ -126,16 +135,23 @@ void DrawScreen(void)
         MacUILib_printf("%s","\n");
     }
 
-    MacUILib_printf("Player positions:\n");
-    for(int m = 0; m < playerBody->getSize(); m++)
-    {
-        playerBody->getElement(tempBody, m);
-        MacUILib_printf("<%d, %d>\n", tempBody.x, tempBody.y);
-    }
-
+    // display messages
 
     MacUILib_printf("Score: %d\n", myGM->getScore());
-    MacUILib_printf("Food Pos: <%d, %d>, + %c\n", tempFood.x, tempFood.y, tempFood.symbol);
+
+        // when self collision occurs
+
+    if(myGM->getLoseFlagStatus() == true && myGM->getExitFlagStatus() == true)
+    {
+        MacUILib_printf("\nOh no! you bit yourself and are in pain :(\n");
+    }
+
+        // force end game
+
+    if(myGM->getLoseFlagStatus() != true && myGM->getExitFlagStatus() == true)
+    {
+        MacUILib_printf("\nGame ended.\n");
+    }
 
 }
 
@@ -147,12 +163,12 @@ void LoopDelay(void)
 
 void CleanUp(void)
 {
-    MacUILib_clearScreen();    
+    //MacUILib_clearScreen();    -- interfering with displaying ending messages so I took out
   
     MacUILib_uninit();
     // deallocating heap members
 
-    delete myGM;
+    delete myGM;        // do we need destructors or does this do it?
     delete myPlayer;
     delete food;
 }

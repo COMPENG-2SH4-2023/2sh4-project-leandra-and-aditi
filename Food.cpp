@@ -15,14 +15,12 @@ Food::~Food()
     delete[] food;
 }
 
+// Leandra double check this
 void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 {
     srand(time(NULL));
     
     objPos blockOff; // used blockoff as name so dont have to rewite parts of code
-
-    int x_candidate;
-    int y_candidate;
 
     bool drawn = true;
 
@@ -32,8 +30,8 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
         int y = mainGameMechsRef->getBoardSizeY();
 
 
-        x_candidate = (rand() %  (x- 2)) + 1;
-        y_candidate = (rand() %  (y - 2)) + 1;
+        int x_candidate = (rand() %  (x- 2)) + 1;
+        int y_candidate = (rand() %  (y - 2)) + 1;
 
     // validate
 
@@ -43,11 +41,12 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
         
             blockList->getElement(blockOff, i);
             if(x_candidate != blockOff.x || y_candidate != blockOff.y) // if at least one of the coordinates 
-                                                                       // does not match player pos -- generate 
+                                                                       // does not match "food" pos -- generate 
             {
                 foodPos.x = x_candidate;
                 foodPos.y = y_candidate;
                 foodPos.symbol = 'o';
+                
                 drawn = false;
                 break; // after generating break out of while loop
 

@@ -1,8 +1,6 @@
 #include "GameMechs.h"
 #include "MacUILib.h" // added to access hasChar and getChar
 
-// Developer 1 - Aditi 
-
 GameMechs::GameMechs()
 {
     input = 0;
@@ -26,7 +24,7 @@ GameMechs::GameMechs(int boardX, int boardY)
     Score = 0;
     exitFlag = false;
     LoseFlag = false;
-    boardSizeX = boardX; // default board size
+    boardSizeX = boardX; // takes input dimensions
     boardSizeY = boardY;
 }
 
@@ -90,6 +88,8 @@ int GameMechs::getScore()
 void GameMechs::incrementScore(objPosArrayList* SizeList)
 {
     int listSize = SizeList->getSize();
-    Score = listSize - 1;
+    Score = listSize - 1; // - 1 cause already 1 * exists when game begins
+
+    // Leandra double check this 
 
 }

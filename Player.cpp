@@ -38,6 +38,27 @@ objPosArrayList* Player::getPlayerPos()
     return playerPosList;
 }
 
+// feature 3 iteration 3
+
+bool Player::CheckSelfCollision()
+{
+    objPos HeadPos;
+    playerPosList->getHeadElement(HeadPos);
+
+    objPos BodyPos;
+
+    for(int i = 1; i < playerPosList->getSize(); i++)
+    {
+        playerPosList->getElement(BodyPos, i);
+
+        if(HeadPos.x == BodyPos.x && HeadPos.y == BodyPos.y)
+        {
+            mainGameMechsRef->setLoseTrue(); // to show lose message
+            mainGameMechsRef->setExitTrue(); // to end game
+        }
+    }
+}
+
 void Player::updatePlayerDir()
 {
     // PPA3 input processing logic  

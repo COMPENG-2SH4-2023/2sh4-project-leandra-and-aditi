@@ -8,21 +8,23 @@
 
 class Player
 {
-    // Construct the remaining declaration from the project manual.
-
-    // Only some sample members are included here
-
-    // You will include more data members and member functions to complete your design.
-
     public:
         enum Dir {UP, DOWN, LEFT, RIGHT, STOP};  // This is the direction state
 
         Player(GameMechs* thisGMRef, Food* food); // updated to hold food reference as well
+                                                  // need food reference in move player
+                                                  // to check if snake eats food so we can increase length
         ~Player(); // destructor
 
         objPosArrayList* getPlayerPos(); // upgraded for snake body
+
+        bool CheckSelfCollision(); // head and body are same position = collision -- end game
+
         void updatePlayerDir();
-        void movePlayer();
+
+        void movePlayer(); // implementing wraparound logic,
+                           // food collision checking and increasing length,
+                           // general "snake" like movement
 
     private:
     

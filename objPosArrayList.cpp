@@ -63,7 +63,7 @@ void objPosArrayList::removeTail()
 {
     if(sizeList > 0)
     {
-        sizeList--; // tail is at the end so just take out the last elemeny by decrementing
+        sizeList--; // tail is at the end so just take out the last element by decrementing
     }
 }
 
