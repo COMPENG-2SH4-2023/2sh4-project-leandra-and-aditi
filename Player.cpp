@@ -53,10 +53,11 @@ bool Player::CheckSelfCollision()
 
         if(HeadPos.x == BodyPos.x && HeadPos.y == BodyPos.y)
         {
-            mainGameMechsRef->setLoseTrue(); // to show lose message
-            mainGameMechsRef->setExitTrue(); // to end game
+            return true;
         }
     }
+
+    return false;
 }
 
 void Player::updatePlayerDir()
@@ -140,6 +141,12 @@ void Player::movePlayer()
     } 
     
     // iteration 3 feature 2
+
+    if(CheckSelfCollision())
+    {
+        mainGameMechsRef->setLoseTrue(); // to show lose message
+        mainGameMechsRef->setExitTrue(); // to end game
+    }
     
     if(currFood.x == currHead.x && currFood.y == currHead.y) // checking for collision
     {

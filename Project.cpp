@@ -74,7 +74,7 @@ void RunLogic(void)
 
     myGM->incrementScore(playerPosList); // would not work unless put in run logic which makes sense
 
-    myPlayer->CheckSelfCollision();
+    //myPlayer->CheckSelfCollision();
 
     myGM->clearInput(); // so the input isn't repetedly processed
 
