@@ -15,7 +15,12 @@ Food::~Food()
     delete[] food;
 }
 
+
 // Leandra double check this
+// I think this work - test until you get to atleast 22 since 
+// thats when the overlap usually occurs
+        // got up to 30 with no overlap
+
 void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 {
     srand(time(NULL));
@@ -26,6 +31,7 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
 
     while(drawn)
     {
+
         int x = mainGameMechsRef->getBoardSizeX();
         int y = mainGameMechsRef->getBoardSizeY();
 
@@ -33,25 +39,26 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
         int x_candidate = (rand() %  (x- 2)) + 1;
         int y_candidate = (rand() %  (y - 2)) + 1;
 
+        drawn = false; // to fix overlap with body -- not drawn
+
     // validate
 
         // feature 2 - change to now go through each element in blockList -- add a for loop
 
         for(int i = 0; i < blockList->getSize(); i++)
+        {
         
             blockList->getElement(blockOff, i);
-            if(x_candidate != blockOff.x || y_candidate != blockOff.y) // if at least one of the coordinates 
-                                                                       // does not match "food" pos -- generate 
+            if(x_candidate == blockOff.x && y_candidate == blockOff.y) 
             {
-                foodPos.x = x_candidate;
-                foodPos.y = y_candidate;
-                foodPos.symbol = 'o';
-                
-                drawn = false;
-                break; // after generating break out of while loop
-
+                drawn = true;
+                break; // break out of loop
             }
-        
+        }
+
+        foodPos.x = x_candidate;
+        foodPos.y = y_candidate;
+        foodPos.symbol = 'o';
     }
 }
     

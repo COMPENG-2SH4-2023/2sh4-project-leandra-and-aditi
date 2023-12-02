@@ -19,7 +19,7 @@ class Food
 
         void generateFood(objPosArrayList* blockList); // upgraded in iteration 3
                                                        // generates "food" and checks does not overlap with
-                                                       // player pos
+                                                       // player pos list
                                                        
         void getFoodPos(objPos &returnPos);
 
