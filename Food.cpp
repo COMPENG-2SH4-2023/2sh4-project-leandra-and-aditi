@@ -16,8 +16,8 @@ Food::~Food()
 }
 
 
-// Leandra double check this
-// I think this work - test until you get to atleast 22 since 
+// double check this
+// I think this works - test until you get to atleast 22 since 
 // thats when the overlap usually occurs
         // got up to 30 with no overlap
 
@@ -27,9 +27,9 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
     
     objPos blockOff; // used blockoff as name so dont have to rewite parts of code
 
-    bool drawn = true;
+    bool noFood = true;
 
-    while(drawn)
+    while(noFood)
     {
 
         int x = mainGameMechsRef->getBoardSizeX();
@@ -39,7 +39,7 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
         int x_candidate = (rand() %  (x- 2)) + 1;
         int y_candidate = (rand() %  (y - 2)) + 1;
 
-        drawn = false; // to fix overlap with body -- not drawn
+        noFood = false; // we now have food generated so break out of loop
 
     // validate
 
@@ -51,14 +51,17 @@ void Food::generateFood(objPosArrayList* blockList) // upgraded in iteration 3
             blockList->getElement(blockOff, i);
             if(x_candidate == blockOff.x && y_candidate == blockOff.y) 
             {
-                drawn = true;
-                break; // break out of loop
+                noFood = true; // no food is positions are equal
+                break;
             }
         }
 
         foodPos.x = x_candidate;
         foodPos.y = y_candidate;
         foodPos.symbol = 'o';
+
+        // putting the noFood = false here was still causing food under snake?
+        // causing issues before the x and y stuff too -- so added it after and it seems to be working
     }
 }
     

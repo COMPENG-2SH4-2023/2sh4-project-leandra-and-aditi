@@ -68,26 +68,30 @@ void Player::updatePlayerDir()
 
     switch(input) // change input to coordinate with gamemech
     {
-        case 32:
+        case 32: // space bar is the exit key to force end game
             mainGameMechsRef->setExitTrue(); // exit key
             break;
 
         case 'w': // up
+        case 'W': // to account for capslock accidentally being on
             if(myDir != DOWN){ 
                 myDir = UP;    
             } break;
 
         case 's': // down
+        case 'S':
             if(myDir != UP){
                 myDir = DOWN;
             } break;
 
         case 'a': // left
+        case 'A':
             if(myDir != RIGHT){
                 myDir = LEFT;
             }  break; 
 
         case 'd': // right
+        case 'D':
             if(myDir != LEFT){
                 myDir = RIGHT;
             } break;
