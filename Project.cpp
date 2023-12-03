@@ -170,5 +170,5 @@ void CleanUp(void)
 
     delete myGM;        // do we need destructors or does this do it?
     delete myPlayer;        // need it because this calls upon the destructor that we make in each class
-    delete food;            // also need to add these in scope -- each corresponding header file
+    delete food;            // without it get undefined reference error
 }

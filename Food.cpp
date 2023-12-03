@@ -12,7 +12,7 @@ Food::Food(GameMechs* thisGMRef) // using the same guidelines as player.cpp
 
 Food::~Food()
 {
-    delete[] food;
+    // ok to be empty -- good practice to have empty deconstructor defined 
 }
 
 

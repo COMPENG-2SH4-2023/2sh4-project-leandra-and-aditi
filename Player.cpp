@@ -23,10 +23,8 @@ Player::Player(GameMechs* thisGMRef, Food* food)
 
 
 Player::~Player()
-{
-    delete [] myPlayer; 
+{    
     delete playerPosList;
-
 }
 
 

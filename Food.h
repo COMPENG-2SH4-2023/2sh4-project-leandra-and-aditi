@@ -30,9 +30,7 @@ class Food
         
         // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
-    
-        int **food; //heap data
-    
+        
 };
 
 

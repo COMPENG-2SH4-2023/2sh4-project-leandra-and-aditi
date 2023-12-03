@@ -25,8 +25,6 @@ class GameMechs
 
         int Score;
 
-        int** myGM; // heap data member
-
     public:
         GameMechs();
         ~GameMechs(); // destructor

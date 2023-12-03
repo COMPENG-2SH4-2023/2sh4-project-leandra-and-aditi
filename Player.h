@@ -37,7 +37,6 @@ class Player
         // Need a reference to Food for iteration 3
         Food* mainFoodRef;
 
-        int** myPlayer; // heap data member
 };
 
 #endif
