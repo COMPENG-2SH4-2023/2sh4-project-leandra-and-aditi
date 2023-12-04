@@ -1,8 +1,6 @@
 #include "Food.h"
 
 
-using namespace std;
-
 Food::Food(GameMechs* thisGMRef) // using the same guidelines as player.cpp
 {
     mainGameMechsRef = thisGMRef;
