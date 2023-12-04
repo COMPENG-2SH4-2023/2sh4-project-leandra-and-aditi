@@ -9,8 +9,6 @@ GameMechs::GameMechs()
     LoseFlag = false;
     boardSizeX = 30; // default board size
     boardSizeY = 15; 
-
-
 }
 
 GameMechs::~GameMechs()
